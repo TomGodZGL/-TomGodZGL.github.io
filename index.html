@@ -1,39 +1,417 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Tomgodzgl.GitHub.io by TomGodZGL</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Tomgodzgl.GitHub.io</h1>
-        <p>梁三个人博客</p>
+    <section class="page-header">
+      <h1 class="project-name">Tomgodzgl.GitHub.io</h1>
+      <h2 class="project-tagline">梁三个人博客</h2>
+    </section>
 
+    <section class="main-content">
+      <h1>
+<a id="梁三个人博客" class="anchor" href="#%E6%A2%81%E4%B8%89%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2" aria-hidden="true"><span class="octicon octicon-link"></span></a>梁三个人博客</h1>
 
-        <p class="view"><a href="https://github.com/TomGodZGL">View My GitHub Profile</a></p>
+<p><em>此个人<a href="http://www.baidu.com">博客</a>旨在技术交流，大家一起学习，欢迎大家指正</em></p>
 
-      </header>
-      <section>
-        <h1>
-<a id="-tomgodzglgithubio" class="anchor" href="#-tomgodzglgithubio" aria-hidden="true"><span class="octicon octicon-link"></span></a>-TomGodZGL.github.io</h1>
+<h2>
+<a id="大型网站优化" class="anchor" href="#%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>大型网站优化</h2>
 
-<p>梁心个人博客
-<strong><em>这是我的第一个个人博客，博主有点懒，暂时什么也没有留下</em></strong></p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+<p>大型网站优化主要有以下两点：</p>
+
+<ul>
+<li>网站静态化</li>
+<li>mysql优化</li>
+</ul>
+
+<h3>
+<a id="判断大型网站的基本概念" class="anchor" href="#%E5%88%A4%E6%96%AD%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" aria-hidden="true"><span class="octicon octicon-link"></span></a>判断大型网站的基本概念</h3>
+
+<ul>
+<li>pv值（page views）页面浏览量：
+是指，一个网站的所有页面，在一天内被访问的总的次数。达到千万级别以上，几百万以上</li>
+<li>uv值（unique vistor）独立访客：是指一个网站，在一天内有多少个用户来访问我们的网站。一般几十万以上</li>
+<li>独立ip：是指一个网站，在一天内有多少个独立ip来访问我们的网站</li>
+</ul>
+
+<h3>
+<a id="大型网站带来的问题" class="anchor" href="#%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>大型网站带来的问题？</h3>
+
+<ul>
+<li>
+<p>大的访问量（大并发）</p>
+
+<p>并发：是指在某个时间点，有多少个用户同时访问某个地址</p>
+</li>
+<li><p>大的流量（带宽问题）</p></li>
+<li>
+<p>海量的数据存储</p>
+
+<p>网站从小到大的数据的存储，比如数据表的容量达到GT级别，带来查询速度变慢，要从海量的数据表里面快速的查找到数据，是我们优化的重点。</p>
+</li>
+</ul>
+
+<h3>
+<a id="大访问量问题" class="anchor" href="#%E5%A4%A7%E8%AE%BF%E9%97%AE%E9%87%8F%E9%97%AE%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>大访问量问题</h3>
+
+<p>使用负载均衡以及分层架构服务器</p>
+
+<p>负载均衡说明：</p>
+
+<p>软件：lvs(linux virtual server)linux虚拟服务， nginx（web服务器，负载均衡）</p>
+
+<p>硬件：f5-bigip  :价格昂贵，立竿见影，效果非常好。一般是大的网游公司或大的门户网站使用</p>
+
+<p>负载均衡器的策略：</p>
+
+<ul>
+<li>轮询：载均衡把请求轮流转发给web服务器</li>
+<li>加权：配置性能高的，分配的权重就越大，处理的请求就越多</li>
+<li>最少连接：负载均衡把请求转发给最空闲的那台服务器</li>
+<li>ip哈希：同一地址的客户端，负载均衡把请求始终给同一台服务器</li>
+</ul>
+
+<h3>
+<a id="大流量问题" class="anchor" href="#%E5%A4%A7%E6%B5%81%E9%87%8F%E9%97%AE%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>大流量问题</h3>
+
+<ul>
+<li>
+<p>在web 服务器端，配置压缩，减少数据传输的数据量</p>
+
+<p>Apache上利用gzip压缩算法进行压缩的模块有两种：mod_gzip和mod_deflate. </p>
+
+<p>具体的步骤：</p>
+
+<p>1）打开apache的httpd.conf配置文件，开启压缩模块</p>
+
+<pre><code>LoadModeule deflate_module modules/mod_deflate.so   
+</code></pre>
+
+<p>2）在虚拟主机里面，配置压缩的对象</p>
+
+<pre><code>&lt;ifmodule mod_deflate.c&gt; 
+    #配置压缩的级别，压缩级别为6，可选1-9，推荐为6
+    DeflateCompressionLevel 6
+    #压缩文本文件      
+    AddOutputFilterByType  DEFLATE text/plain   
+    #压缩html文件
+    AddOutputFilterByType  DEFLATE text/html   
+    #压缩xml文件
+    AddOutputFilterByType  DEFLATE text/xml    
+&lt;/ifmodule&gt; 
+注意：为什么要指定文件类型来压缩？
+压缩也是要耗费cpu资源的，图片/视频等文件，压缩效果不好，不要对其压缩。一般压缩的是文本格式的文件。
+DeflateCompressionLevel 指令来设置压缩级别。该指令的值可为1（压缩速度最快，最低的压缩质量）到9（最慢的压缩速度，压缩率最高）之间的整数，其默认值为6（压缩速度和压缩质量较为平衡的值）
+</code></pre>
+</li>
+<li><p>合并文件（样式文件，js文件，背景图片文件），减少http的请求</p></li>
+<li><p>把比较占用流量的资源（或不同的功能）单独部署服务器</p></li>
+</ul>
+
+<h3>
+<a id="大存储问题" class="anchor" href="#%E5%A4%A7%E5%AD%98%E5%82%A8%E9%97%AE%E9%A2%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>大存储问题</h3>
+
+<ul>
+<li>
+<p>使用缓存技术</p>
+
+<p>主要目的是：减少数据库的查询次数</p>
+
+<p>1）磁盘缓存（页面静态化）</p>
+
+<p>页面静态化，就是把一个动态（操作数据库）的页面，转换成一个.html页面。直接访问生成的.html页面。提高了访问速度，因为没有查询数据库</p>
+
+<p>2）内存缓存（redis/memcache）</p>
+
+<p>把数据缓存到服务器端的内存里面。下次访问时，直接从内存里面获取数据</p>
+</li>
+<li>
+<p>对mysql优化</p>
+
+<p>1）设计角度：存储引擎的选择，字段类型选择，范式</p>
+
+<p>2）利用mysql自身的特性：索引，查询缓存，分区分表，存储过程，sql语句优化配置，</p>
+
+<p>3）部署大负载架构体系：主从复制，读写分离。</p>
+
+<p>4）硬件升级</p>
+
+<p><strong>注</strong>： 此mysql优化推荐参考 <a href="http://superve.leanote.com/">骑着笨鸟慢慢飞</a> 个人技术博客</p>
+</li>
+</ul>
+
+<h3>
+<a id="页面静态化详解" class="anchor" href="#%E9%A1%B5%E9%9D%A2%E9%9D%99%E6%80%81%E5%8C%96%E8%AF%A6%E8%A7%A3" aria-hidden="true"><span class="octicon octicon-link"></span></a>页面静态化详解</h3>
+
+<ul>
+<li>
+<p>什么是页面静态化：</p>
+
+<p>就是把一个动态（操作数据库）的页面转换成一个.html页面。
+比如<a href="http://www.abc.com/goods.php?id=4">http://www.abc.com/goods.php?id=4</a>;<br>
+可以变成<a href="http://www.abc.com/goods_id4.html">http://www.abc.com/goods_id4.html</a></p>
+
+<p>页面静态化可以分为两种：真静态和伪静态。
+真静态：就是把一个动态的页面，实实在在的生成一个静态页面。
+伪静态：从形式上看是一个静态页面，实际上操作的还是动态页面。比如
+<a href="http://www.abc.com/news-sport_id12.html">http://www.abc.com/news-sport_id12.html</a>
+实际上操作是：
+<a href="http://www.abc.com/news.php?type=sport&amp;id=12">http://www.abc.com/news.php?type=sport&amp;id=12</a></p>
+</li>
+<li>
+<p>实现方式</p>
+
+<p>真静态的实现方式：使用ob缓存技术，ob缓存，缓存的内容是响应的主体数据。</p>
+
+<p>在请求一个php的过程中，我们实际上经过三个缓存，程序缓存，ob缓存，浏览器缓存。</p>
+
+<p>伪静态的实现方式：通过web服务器的重写机制，比如请求 index.html =》 index.php</p>
+</li>
+<li>
+<p>程序缓存</p>
+
+<p>该缓存是必须存在的，是无法关闭的。缓存的数据是响应的数据（响应的头和响应的主体数据）</p>
+</li>
+<li>
+<p>ob缓存</p>
+
+<p>ob就是 output_buffering:输出缓存，缓存的数据是响应的主体数据</p>
+
+<p>如果开辟了ob缓存，主体数据首先存储到ob缓存里面，头信息要存储到程序缓存（无论是否开启ob缓存），当代码执行完毕后，ob缓存里面的数据刷新（移动）到程序缓存，程序缓存再输出到浏览器缓存中，最后输出内容</p>
+</li>
+<li>
+<p>如何开启 ob缓存</p>
+
+<p>1）使用ob_start()函数，针对当前页面有效</p>
+
+<p>2）通过使用php.ini的配置文件来开启ob缓存，针对所有的页面都有效</p>
+</li>
+<li>
+<p>ob相关的函数</p>
+
+<p>ob_get_contents();//获取ob缓存里面的内容</p>
+
+<p>ob_clean();//清空ob缓存里面的内容，不关闭ob缓存</p>
+
+<p>ob_end_clean();//清空ob缓存里面的内容，并关闭ob缓存</p>
+
+<p>ob_flush();//是把ob缓存里面的数据给刷新（移动）到程序缓存。不关闭ob缓存</p>
+
+<p>ob_end_flush();是把ob缓存里面的数据给刷新（移动）到程序缓存。并关闭ob缓存</p>
+
+<p>获取ob缓存里面的数据内容：</p>
+
+<pre><code>$content = ob_get_contents();响应主体的数据
+file_put_contents(文件名称,’文件内容’);// 生成了一个静态页面
+</code></pre>
+</li>
+<li>
+<p>真静态案例</p>
+
+<pre><code>&lt;?php 
+
+    //接收参数
+    $goods_id = $_GET['goods_id'] + 0;
+    $lifetime = 24*3600*7;
+    //构造静态页面文件名
+    $filename = 'goods_' . $goods_id . '.html';
+
+    //判断文件是否存在且是否在生命周期中
+    if(file_exists($filename) &amp;&amp; filemtime($filename) + $lifetime &gt; time()) {
+        include $filename;
+        exit;
+    }
+
+    //如果静态页面不存在，页面已经过期，则操作数据库
+    $link = mysql_connect('localhost:3306','root','root');
+    mysql_query('set names utf8');
+    mysql_query('use test');
+
+    $sql = "select * from sh_goods where g_id = $goods_id";
+    $res = mysql_query($sql);
+    $info = mysql_fetch_assoc($res);
+
+    ob_start();
+?&gt;
+    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+    &lt;html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"&gt;
+    &lt;head&gt;
+    &lt;title&gt;商品详情页&lt;/title&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
+    &lt;meta name="description" content="" /&gt;
+    &lt;meta name="keywords" content="" /&gt;
+    &lt;script type="text/javascript"&gt;
+
+    &lt;/script&gt;
+
+    &lt;style type="text/css"&gt;
+    &lt;/style&gt;
+    &lt;/head&gt;
+        &lt;body&gt;
+        &lt;h1&gt;&lt;?php echo $info['goods_name']?&gt;&lt;/h1&gt;
+        &lt;div&gt;&lt;?php echo $info['goods_desc']?&gt;&lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+
+&lt;?php 
+    $content = ob_get_contents();//获取ob缓存里面的数据内容
+    file_put_contents($filename,$content);
+
+?&gt;
+</code></pre>
+
+<h3>
+<a id="伪静态" class="anchor" href="#%E4%BC%AA%E9%9D%99%E6%80%81" aria-hidden="true"><span class="octicon octicon-link"></span></a>伪静态</h3>
+</li>
+</ul>
+
+<p>实际开发项目中，我们的页面不适合使用真静态，但是你不仅希望页面安全性高，同时利于seo，可以考虑使用伪静态技术</p>
+
+<ul>
+<li>
+<p>实现方式</p>
+
+<p>使用apache的重写模块，要开启重写模块（rewrite机制）。
+在重写模块中，要配置重写规则，在重写规则里面我们使用到正则表达式</p>
+</li>
+<li>
+<p>如何开启重写模块</p>
+
+<p>打开 httpd.conf文件，进行配置修改。添加rewrite_module模块</p>
+
+<pre><code>LoadModule rewrite_module modules/mod_rewrite.so
+</code></pre>
+</li>
+<li>
+<p>具体的重写规则的配置</p>
+
+<p>1）使用分布式文件配置，.htaccess文件</p>
+
+<p>2）在虚拟主机的配置文件中，要配置支持 .htaccess配置文件</p>
+
+<pre><code>AllowOverride All
+</code></pre>
+
+<p>3）在.htaccess文件中进行配置重写规则</p>
+
+<pre><code>RewriteEngine  on   开启重写引擎
+RewriteCond         重写条件
+RewriteRule         重写规则
+</code></pre>
+
+<p>4)RewriteCond重写条件语法</p>
+
+<pre><code>RewriteCond 判断依据  条件表达式 [条件标志]
+</code></pre>
+
+<p>5)案例说明</p>
+
+<pre><code>&lt;IfModule rewrite_module&gt;
+    #开启重写引擎
+    RewriteEngine on
+    #添加重写条件
+    RewriteCond %{REQUEST_FILENAME} !-f
+    #添加重写规则
+    RewriteRule index.html  index.php
+&lt;/IfModule&gt;
+</code></pre>
+</li>
+<li>
+<p>防盗链</p>
+
+<p>1)为了防止外部使用网站图片资源可以添加水印</p>
+
+<p>2）利用重写机制，根据HTTP_PEFERER</p>
+
+<pre><code>&lt;IfModule rewrite_module&gt;
+    RewriteEngine on
+    #判断URL的上一次访问是否本域名地址
+    RewriteCond  %{HTTP_PEFERER} -www.demo.com[NC]
+    #如果不会本网站访问，则禁止访问
+    RewriteRule  \.(jpg|png|jpeg|gif|bmp)   -[F]
+&lt;/IfModule&gt;
+</code></pre>
+</li>
+</ul>
+
+<h2>
+<a id="商品浏览记录代码实现" class="anchor" href="#%E5%95%86%E5%93%81%E6%B5%8F%E8%A7%88%E8%AE%B0%E5%BD%95%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>商品浏览记录代码实现</h2>
+
+<p><strong>获取商品历史浏览记录，利用thinkPHP框架开发，基于cookie实现</strong></p>
+
+<pre><code>public function getHistory(){
+    //判断cookie中时候有history数据存在
+    $list = isset($_COOKIE['history']) ? unserialize($_COOKIE['history']) : array();
+    $goods_id = (int)$_GET['id'];
+
+    //判断用户是否浏览了商品
+    if(!empty($goods_id)){
+        if(!empty($list)){      
+            //获取商品ID
+            $ids = array();
+            foreach($list as $v){
+                $ids[] = $v['goods_id'];
+            }
+            //判断商品是否已经存在,则删除
+            $index = array_search($goods_id, $ids);
+            if($index !== false){
+                $history = $list[$index];
+                unset($list[$index]);
+            }else{
+                //根据商品ID获取商品详细信息
+                $goodsinfo = M('Goods')-&gt;field('goods_name,shop_price,goods_thumb')-&gt;where("id = $goods_id")-&gt;find();
+                //构造新数组，并添加到浏览记录中
+                $history = array(
+                        'goods_id'      =&gt;  $goods_id,
+                        'goods_name'    =&gt;  $goodsinfo['goods_name'],
+                        'shop_price'    =&gt;  $goodsinfo['shop_price'],
+                        'goods_thumb'   =&gt;  $goodsinfo['goods_thumb']
+                );
+            }
+            //判断商品记录是否大于3条
+            if(count($list) &gt; 3){
+                array_pop($list);
+            }
+            //往数组的头部添加数据
+            array_unshift($list, $history);                         
+        }else{
+            //根据商品ID获取商品详细信息
+
+            $goodsinfo = M('Goods')-&gt;field('goods_name,shop_price,goods_thumb')-&gt;where("id = $goods_id")-&gt;find();
+
+            //构造新数组，并添加到浏览记录中
+            $history = array(
+                    'goods_id'      =&gt;  $goods_id,
+                    'goods_name'    =&gt;  $goodsinfo['goods_name'],
+                    'shop_price'    =&gt;  $goodsinfo['shop_price'],
+                    'goods_thumb'   =&gt;  $goodsinfo['goods_thumb']
+            );
+            //往数组的头部添加数据
+            array_unshift($list, $history);
+        }
+
+        //获取商品信息并将其放入cookie中，用于浏览历史使用
+        setcookie('history',serialize($list),time()+24*3600,'/');           
+    }
+    //将数组返回
+    return $list;   
+}
+</code></pre>
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
 
+    </section>
+
+  
   </body>
 </html>
